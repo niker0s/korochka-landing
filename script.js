@@ -1,5 +1,6 @@
-// Демонстрационный скрипт: меню, появление блоков, проверка формы.
-// Сервера нет — заявка никуда не уходит (см. README).
+// Скрипт лендинга: мобильное меню, появление блоков, проверка формы.
+// Заявка уходит на POST /api/order — его принимает server.py
+// и пересылает в Telegram (см. README).
 
 (function () {
   'use strict';
@@ -80,6 +81,9 @@
     },
     address: function (value) {
       return value.trim().length >= 5 ? '' : 'Укажите улицу, дом и квартиру';
+    },
+    consent: function (value, input) {
+      return input.checked ? '' : 'Без согласия на обработку данных заявку принять нельзя';
     }
   };
 
@@ -87,7 +91,7 @@
     var rule = rules[input.name];
     if (!rule) return true;
 
-    var message = rule(input.value);
+    var message = rule(input.value, input);
     var field = input.closest('.field');
     var error = field.querySelector('.field__error');
 
@@ -118,6 +122,15 @@
       });
     });
 
+    // Ссылка на политику стоит внутри подписи — она не должна
+    // заодно переключать галочку согласия.
+    var consentLink = form.querySelector('.field--check a');
+    if (consentLink) {
+      consentLink.addEventListener('click', function (event) {
+        event.stopPropagation();
+      });
+    }
+
     form.addEventListener('submit', function (event) {
       event.preventDefault();
       status.textContent = '';
@@ -141,7 +154,8 @@
         phone: form.elements.phone.value,
         pie: form.elements.pie.value,
         address: form.elements.address.value,
-        note: form.elements.note.value
+        note: form.elements.note.value,
+        consent: form.elements.consent.checked
       };
 
       button.disabled = true;

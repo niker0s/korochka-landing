@@ -88,6 +88,9 @@ def validate(data: dict) -> dict[str, str]:
     if len(pie) > 80 or len(note) > 500:
         errors["note"] = "Слишком длинный текст"
 
+    if data.get("consent") is not True:
+        errors["consent"] = "Без согласия на обработку данных заявку принять нельзя"
+
     return errors
 
 

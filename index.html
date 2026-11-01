@@ -6,10 +6,88 @@
 <title>Корочка — пироги из печи с доставкой по Москве</title>
 <meta name="description" content="Печём пироги на дровах каждое утро и привозим по Москве за 90 минут. Яблоко, черника, вишня, творог, мясо, капуста. Оплата при получении.">
 <meta name="theme-color" content="#1a0f0c">
+
+<!-- Превью ссылки в мессенджерах и соцсетях.
+     После публикации заменить og:image на полный адрес вида
+     https://ваш-домен/assets/img/hero-pie.jpg — мессенджеры
+     относительные пути не показывают. -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Корочка">
+<meta property="og:title" content="Корочка — пироги из печи с доставкой по Москве">
+<meta property="og:description" content="Печём на дровах каждое утро, привозим в термосумке за 90 минут. Восемь начинок, оплата при получении.">
+<meta property="og:image" content="assets/img/hero-pie.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231a0f0c'/%3E%3Cpath d='M6 20c0-5 4.5-9 10-9s10 4 10 9z' fill='%23f2b441'/%3E%3Crect x='6' y='21' width='20' height='4' rx='2' fill='%23c63c57'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/alegreya-cyr.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/onest-cyr.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
+
+<!-- Разметка для поисковиков: пекарня, часы работы, меню с ценами.
+     Проверить можно на https://validator.schema.org/ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Корочка",
+  "description": "Пекарня на дровах: пироги с яблоком, черникой, вишней, творогом, мясом, капустой. Доставка по Москве за 90 минут.",
+  "image": "assets/img/hero-pie.jpg",
+  "telephone": "+7-495-000-00-00",
+  "email": "hello@korochka.ru",
+  "priceRange": "790–1190 ₽",
+  "currenciesAccepted": "RUB",
+  "paymentAccepted": "Наличные, перевод",
+  "servesCuisine": "Русская выпечка",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "улица Пироговая, 14",
+    "addressLocality": "Москва",
+    "addressCountry": "RU"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "08:00",
+      "closes": "22:00"
+    }
+  ],
+  "hasMenu": {
+    "@type": "Menu",
+    "name": "Меню на сегодня",
+    "hasMenuSection": [
+      {
+        "@type": "MenuSection",
+        "name": "Сладкие",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "Яблоко и корица", "description": "антоновка, тростниковый сахар, сливочное тесто",
+            "offers": { "@type": "Offer", "price": "890", "priceCurrency": "RUB" } },
+          { "@type": "MenuItem", "name": "Черника и лимон", "description": "черника, цедра лимона, песочная решётка",
+            "offers": { "@type": "Offer", "price": "1190", "priceCurrency": "RUB" } },
+          { "@type": "MenuItem", "name": "Вишня и миндаль", "description": "вишня без косточки, миндальный крамбл",
+            "offers": { "@type": "Offer", "price": "1090", "priceCurrency": "RUB" } },
+          { "@type": "MenuItem", "name": "Творог и ваниль", "description": "фермерский творог, ваниль, изюм",
+            "offers": { "@type": "Offer", "price": "950", "priceCurrency": "RUB" } }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Сытные",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "Мясо и картофель", "description": "говядина, картофель, тимьян",
+            "offers": { "@type": "Offer", "price": "990", "priceCurrency": "RUB" } },
+          { "@type": "MenuItem", "name": "Капуста и яйцо", "description": "тушёная капуста, яйцо, укроп",
+            "offers": { "@type": "Offer", "price": "790", "priceCurrency": "RUB" } },
+          { "@type": "MenuItem", "name": "Рыба и рис", "description": "судак, рис, лук-порей",
+            "offers": { "@type": "Offer", "price": "1150", "priceCurrency": "RUB" } },
+          { "@type": "MenuItem", "name": "Грибы и гречка", "description": "белые грибы, гречка, жареный лук",
+            "offers": { "@type": "Offer", "price": "890", "priceCurrency": "RUB" } }
+        ]
+      }
+    ]
+  }
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#menu">Перейти к меню</a>
@@ -306,6 +384,12 @@
           <textarea id="note" name="note" rows="2" placeholder="К 18:00, позвонить за 15 минут"></textarea>
         </div>
 
+        <div class="field field--check">
+          <input id="consent" name="consent" type="checkbox" required>
+          <label for="consent">Согласен на обработку персональных данных, <a href="privacy.html">политика конфиденциальности</a></label>
+          <p class="field__error" data-error-for="consent"></p>
+        </div>
+
         <button class="btn btn--primary btn--wide" type="submit">Отправить заявку</button>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
@@ -333,6 +417,7 @@
   </div>
   <div class="wrap footer__bottom">
     <p>© <span id="year">2026</span> Пекарня «Корочка»</p>
+    <p><a href="privacy.html">Политика конфиденциальности</a></p>
     <p>Демонстрационный сайт. Данные и контакты — пример.</p>
   </div>
 </footer>

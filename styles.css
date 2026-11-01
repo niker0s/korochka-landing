@@ -618,6 +618,31 @@ button { font: inherit; }
 .field.is-invalid textarea { border-color: #b32a41; }
 .field.is-invalid .field__error { display: block; }
 
+/* Чекбокс согласия: квадратик слева, текст справа */
+.field--check {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 10px;
+  align-items: start;
+}
+.field--check input {
+  width: 18px;
+  height: 18px;
+  margin: 3px 0 0;
+  padding: 0;
+  accent-color: var(--berry);
+  cursor: pointer;
+}
+.field--check label {
+  margin: 0;
+  font: 400 13px/1.5 var(--body);
+  color: rgba(26, 15, 12, .72);
+  cursor: pointer;
+}
+.field--check label a { color: var(--berry-deep); }
+.field--check .field__error { grid-column: 2; }
+.field--check.is-invalid input { outline: 2px solid #b32a41; outline-offset: 2px; }
+
 .form-status {
   min-height: 22px;
   margin-top: 12px;
@@ -626,6 +651,47 @@ button { font: inherit; }
   color: #1f6b45;
 }
 .form-status.is-error { color: #9c2136; }
+
+/* ---------- Отдельная страница с текстом (политика) ---------- */
+.legal {
+  padding-block: clamp(30px, 5vw, 60px) clamp(48px, 7vw, 90px);
+}
+.legal__inner { max-width: 74ch; }
+.legal h1 {
+  font: 700 clamp(2rem, 4.4vw, 2.9rem)/1.1 var(--display);
+  letter-spacing: -.01em;
+}
+.legal__date {
+  margin: 12px 0 26px;
+  font-size: 13.5px;
+  letter-spacing: .02em;
+  color: rgba(246, 233, 216, .55);
+}
+.legal h2 {
+  margin: 34px 0 10px;
+  font: 700 1.28rem/1.25 var(--display);
+  color: var(--crust);
+}
+.legal p,
+.legal li {
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: rgba(246, 233, 216, .8);
+}
+.legal p + p { margin-top: 10px; }
+.legal ul {
+  margin: 12px 0 0;
+  padding-left: 22px;
+  list-style: disc;
+  display: grid;
+  gap: 6px;
+}
+.legal a {
+  color: var(--butter);
+  text-decoration-color: rgba(242, 180, 65, .4);
+  text-underline-offset: 3px;
+}
+.legal a:hover { text-decoration-color: currentColor; }
 
 /* ---------- Подвал ---------- */
 .footer {
